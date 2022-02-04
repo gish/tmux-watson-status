@@ -4,14 +4,15 @@ set -e
 
 status_interpolation="\#{watson_status}"
 
-
+started_icon="watson running‍"
+stopped_icon="watson stopped️"
 
 get_status() {
 	local num_lines=$(cat ~/.config/watson/state | wc -l)
 	if [[ $num_lines = "0" ]]; then
-		echo "🦥"
+		echo $stopped_icon
 	else
-		echo "🐝"
+		echo $started_icon
 	fi
 }
 
