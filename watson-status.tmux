@@ -2,6 +2,8 @@
 
 set -e
 
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 status_interpolation="\#{watson_status}"
 
 started_icon="watson running‍"
@@ -10,9 +12,11 @@ stopped_icon="watson stopped️"
 get_status() {
 	local num_lines=$(cat ~/.config/watson/state | wc -l)
 	if [[ $num_lines = "0" ]]; then
-		echo $stopped_icon
+		#echo $stopped_icon
+        date | xargs echo
 	else
-		echo $started_icon
+		#echo $started_icon
+        date | xargs echo
 	fi
 }
 
@@ -34,12 +38,11 @@ set_tmux_option() {
 }
 
 do_interpolation() {
-	local input=$1
-	local result=""
-
+	local result="$1"
 	local status=$(get_status)
-	result=${input/$status_interpolation/$status}
-	echo $result
+    local cmd="#($CURRENT_DIR/scripts/status.sh)"
+	result=${result/$status_interpolation/${cmd}}
+    echo $result
 }
 
 update_tmux_option() {
@@ -53,4 +56,3 @@ main() {
 	update_tmux_option "status-left"
 }
 main
-
