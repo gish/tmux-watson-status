@@ -6,20 +6,6 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 status_interpolation="\#{watson_status}"
 
-started_icon="watson running‍"
-stopped_icon="watson stopped️"
-
-get_status() {
-	local num_lines=$(cat ~/.config/watson/state | wc -l)
-	if [[ $num_lines = "0" ]]; then
-		#echo $stopped_icon
-        date | xargs echo
-	else
-		#echo $started_icon
-        date | xargs echo
-	fi
-}
-
 get_tmux_option() {
 	local option="$1"
 	local default_value="$2"
