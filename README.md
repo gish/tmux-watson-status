@@ -15,3 +15,7 @@ Add plugin to the list of TPM plugins in `.tmux.conf`:
 Add `#{watson_status}` to your status bar config in `.tmux.conf`.
 
 Example `set -g status-right '🕙 %H:%M #{watson_status}'`
+
+## Incidators
+
+When Watson is running, the 👷 icon shows. Upon stopping Watson, it changes into 🏝️..
